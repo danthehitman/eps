@@ -1,0 +1,14 @@
+[
+{
+  "modid": "eps",
+  "name": "Ender Postal Service",
+  "description": "Ender delivery.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://hitmanlabs.com",
+  "updateUrl": "",
+  "authorList": [ "danthehitman" ],
+  "credits": "By danthehitman.",
+  "logoFile": ""
+}
+]
