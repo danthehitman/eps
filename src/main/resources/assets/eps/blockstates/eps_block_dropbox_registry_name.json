@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "normal": { "model": "eps:eps_block_dropbox_model" }
+  }
+}
