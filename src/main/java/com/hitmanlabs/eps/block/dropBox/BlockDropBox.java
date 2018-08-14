@@ -1,11 +1,15 @@
 package com.hitmanlabs.eps.block.dropBox;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockConcretePowder;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -21,12 +25,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  *   don't call block.isOpaqueCube(), call iBlockState.isOpaqueCube() instead".
  * If that doesn't make sense to you yet, don't worry.  Just ignore the "deprecated method" warning.
  */
-public class BlockDropBox extends Block
+public class BlockDropBox extends BlockContainer
 {
     public BlockDropBox()
     {
         super(Material.ANVIL);
         this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);   // the block will appear on the Blocks tab in creative
+    }
+
+    // Called when the block is placed or loaded client side to get the tile entity for the block
+    // Should return a new instance of the tile entity for the block
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
+        return new TileDropBox();
     }
 
     // the block will render in the SOLID layer.  See http://greyminecraftcoder.blogspot.co.at/2014/12/block-rendering-18.html for more information.
