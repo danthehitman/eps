@@ -1,14 +1,19 @@
 package com.hitmanlabs.eps.block.dropBox;
 
+import com.hitmanlabs.eps.Eps;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockConcretePowder;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -38,6 +43,17 @@ public class BlockDropBox extends BlockContainer
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileDropBox();
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand,
+                                    EnumFacing side, float hitX, float hitY, float hitZ) {
+        // Uses the gui handler registered to your mod to open the gui for the given gui id
+        // open on the server side only  (not sure why you shouldn't open client side too... vanilla doesn't, so we better not either)
+        if (worldIn.isRemote) return true;
+
+        playerIn.openGui(Eps.instance, GuiHandlerDropBox.getGuiID(), worldIn, pos.getX(), pos.getY(), pos.getZ());
+        return true;
     }
 
     // the block will render in the SOLID layer.  See http://greyminecraftcoder.blogspot.co.at/2014/12/block-rendering-18.html for more information.

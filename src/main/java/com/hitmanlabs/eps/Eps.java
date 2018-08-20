@@ -62,6 +62,10 @@ public class Eps
     public static final String MODID = "eps";
     public static final String VERSION = "0.0.1";
 
+    // The instance of your mod that Forge uses.  Optional.
+    @Mod.Instance(Eps.MODID)
+    public static Eps instance;
+
     // Says where the client and server 'proxy' code is loaded.
     @SidedProxy(clientSide="com.hitmanlabs.eps.ClientProxy", serverSide="com.hitmanlabs.eps.ServerProxy")
     public static CommonProxy proxy;

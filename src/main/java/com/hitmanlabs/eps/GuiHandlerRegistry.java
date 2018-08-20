@@ -26,7 +26,7 @@ public class GuiHandlerRegistry implements IGuiHandler {
 
     public static GuiHandlerRegistry getInstance() {return guiHandlerRegistry;}
 
-    private HashMap<Integer, IGuiHandler> registeredHandlers = new HashMap<Integer, IGuiHandler>();
+    private HashMap<Integer, IGuiHandler> registeredHandlers = new HashMap<>();
     private static GuiHandlerRegistry guiHandlerRegistry = new GuiHandlerRegistry();
 
     // Gets the server side element for the given gui id- this should return a container

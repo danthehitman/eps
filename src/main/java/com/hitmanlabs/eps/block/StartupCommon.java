@@ -1,8 +1,14 @@
 package com.hitmanlabs.eps.block;
 
+import com.hitmanlabs.eps.Eps;
+import com.hitmanlabs.eps.GuiHandlerRegistry;
 import com.hitmanlabs.eps.block.dropBox.BlockDropBox;
+import com.hitmanlabs.eps.block.dropBox.GuiHandlerDropBox;
+import com.hitmanlabs.eps.block.dropBox.TileDropBox;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
  * User: The Grey Ghost
@@ -44,6 +50,17 @@ public class StartupCommon
         itemBlockDropBox = new ItemBlock(blockDropBox);
         itemBlockDropBox.setRegistryName(blockDropBox.getRegistryName());
         ForgeRegistries.ITEMS.register(itemBlockDropBox);
+
+        // Each of your tile entities needs to be registered with a name that is unique to your mod.
+        GameRegistry.registerTileEntity(TileDropBox.class, "eps_block_dropbox_tile_entity");
+
+        // You need to register a GUIHandler for the container.  However there can be only one handler per mod, so for the purposes
+        //   of this project, we create a single GuiHandlerRegistry for all examples.
+        // We register this GuiHandlerRegistry with the NetworkRegistry, and then tell the GuiHandlerRegistry about
+        //   each example's GuiHandler, in this case GuiHandlerMBE31, so that when it gets a request from NetworkRegistry,
+        //   it passes the request on to the correct example's GuiHandler.
+        NetworkRegistry.INSTANCE.registerGuiHandler(Eps.instance, GuiHandlerRegistry.getInstance());
+        GuiHandlerRegistry.getInstance().registerGuiHandler(new GuiHandlerDropBox(), GuiHandlerDropBox.getGuiID());
     }
 
     public static void initCommon()

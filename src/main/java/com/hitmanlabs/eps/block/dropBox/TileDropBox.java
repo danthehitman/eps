@@ -61,6 +61,11 @@ public class TileDropBox extends TileEntity implements IInventory, ITickable {
         return true;
     }
 
+    public boolean isReadyToSend()
+    {
+        return true;
+    }
+
     // Gets the stack in the given slot
     @Override
     public ItemStack getStackInSlot(int i) {
