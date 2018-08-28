@@ -78,27 +78,27 @@ public class ContainerDropBox extends Container {
             }
         }
 
-        final int PACKAGE_SLOTS_X_POS = 53;
+        final int PACKAGE_SLOTS_X_POS = 22;
         final int PACKAGE_SLOTS_YPOS = 96;
-        // Add the tile fuel slots
+        // Add the tile package slots
         for (int x = 0; x < PACKAGE_SLOT_COUNT; x++) {
             int slotNumber = x + FIRST_PACKAGE_SLOT_NUMBER;
             addSlotToContainer(new SlotPackage(tileDropBox, slotNumber, PACKAGE_SLOTS_X_POS + SLOT_X_SPACING * x, PACKAGE_SLOTS_YPOS));
         }
 
-        final int INPUT_SLOTS_XPOS = 26;
-        final int INPUT_SLOTS_YPOS = 24;
+        final int INPUT_SLOTS_XPOS = 50;
+        final int INPUT_SLOTS_YPOS = 96;
         // Add the tile input slots
         for (int y = 0; y < PAYMENT_SLOT_COUNT; y++) {
             int slotNumber = y + FIRST_PAYMENT_SLOT_NUMBER;
             addSlotToContainer(new SlotPaymentInput(tileDropBox, slotNumber, INPUT_SLOTS_XPOS, INPUT_SLOTS_YPOS+ SLOT_Y_SPACING * y));
         }
 
-        final int OUTPUT_SLOTS_XPOS = 134;
-        final int OUTPUT_SLOTS_YPOS = 24;
+        final int OUTPUT_SLOTS_XPOS = 79;
+        final int OUTPUT_SLOTS_YPOS = 96;
         // Add the tile output slots
         for (int y = 0; y < RECIEPT_SLOT_COUNT; y++) {
-            int slotNumber = y + RECIEPT_SLOT_COUNT;
+            int slotNumber = y + FIRST_RECEIPT_SLOT_NUMBER;
             addSlotToContainer(new SlotReceipt(tileDropBox, slotNumber, OUTPUT_SLOTS_XPOS, OUTPUT_SLOTS_YPOS + SLOT_Y_SPACING * y));
         }
     }
@@ -133,7 +133,8 @@ public class ContainerDropBox extends Container {
             if (sourceStack.getItem() instanceof ShippablePackage) {
                 insertItemsIntoSlots(sourceStack, FIRST_PACKAGE_SLOT_INDEX, FIRST_PAYMENT_SLOT_INDEX, 1);
             } else if (TileDropBox.isShippingPayment(sourceStack.getItem())) {
-                insertItemsIntoSlots(sourceStack, FIRST_PACKAGE_SLOT_INDEX, FIRST_PAYMENT_SLOT_INDEX, 1);
+                insertItemsIntoSlots(sourceStack, FIRST_PAYMENT_SLOT_INDEX, FIRST_RECEIPT_SLOT_INDEX, 1);
+                return ItemStack.EMPTY;
             } else
                 return sourceStack;
         } else if (sourceSlotIndex >= FIRST_PAYMENT_SLOT_INDEX && sourceSlotIndex < FIRST_PAYMENT_SLOT_INDEX + DROP_BOX_SLOT_COUNT) {

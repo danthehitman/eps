@@ -1,6 +1,7 @@
 package com.hitmanlabs.eps.block.dropBox;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -34,7 +35,7 @@ public class TileDropBox extends TileEntity implements IInventory, ITickable {
     }
 
     public static boolean isShippingPayment(Item item) {
-        return true;
+        return item == Items.ENDER_EYE || item == Items.ENDER_PEARL;
     }
 
     @Override
@@ -132,6 +133,7 @@ public class TileDropBox extends TileEntity implements IInventory, ITickable {
     // Unlike the vanilla furnace, we allow anything to be placed in the fuel slots
     static public boolean isItemValidForPackageSlot(ItemStack itemStack)
     {
+        //Once we implement the package we will need to check for it here.
         return true;
     }
 
@@ -139,13 +141,14 @@ public class TileDropBox extends TileEntity implements IInventory, ITickable {
     // Unlike the vanilla furnace, we allow anything to be placed in the fuel slots
     static public boolean isItemValidForPaymentSlot(ItemStack itemStack)
     {
-        return true;
+        return isShippingPayment(itemStack.getItem());
     }
 
     // Return true if the given stack is allowed to be inserted in the given slot
     // Unlike the vanilla furnace, we allow anything to be placed in the fuel slots
     static public boolean isItemValidForReceiptSlot(ItemStack itemStack)
     {
+        //Once we implement the receipt object we will stick it here.
         return false;
     }
 
