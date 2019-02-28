@@ -1,8 +1,6 @@
 package com.hitmanlabs.eps.block.dropBox;
 
 import com.hitmanlabs.eps.Eps;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockConcretePowder;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
